@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -9,7 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SigninComponent implements OnInit {
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -17,7 +19,9 @@ export class SigninComponent implements OnInit {
 
   onSignIn() {
     this.authService.GoogleAuth().then(res => {
-      console.log(res, '-- res');
+      if (res) {
+        this.router.navigate(['dashboard']);
+      }
     });
   }
 
