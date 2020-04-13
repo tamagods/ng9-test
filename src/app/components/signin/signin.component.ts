@@ -15,14 +15,24 @@ export class SigninComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
   onSignIn() {
-    this.authService.GoogleAuth().then(res => {
-      if (res) {
-        this.router.navigate(['dashboard']);
+    this.authService.GoogleAuth().then(data => {
+      if (data) {
+        this.setToken(data);
+        this.routerToDashboard();
       }
     });
   }
 
+  setToken(data) {
+    localStorage.setItem('accessToken', data.credential.accessToken);
+    localStorage.setItem('refreshToken', data.user.refreshToken);
+  }
+
+  routerToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 }

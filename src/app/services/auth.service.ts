@@ -19,4 +19,8 @@ export class AuthService {
   AuthLogin(provider): Promise<any> {
     return this.afAuth.auth.signInWithPopup(provider);
   }
+
+  getAccessToken(): string {
+    return localStorage.getItem('accessToken');
+  }
 }
