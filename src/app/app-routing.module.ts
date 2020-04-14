@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { SigninComponent } from './components/signin/signin.component';
+import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AuthGuard } from './services/guard.service';
+import { SigninComponent } from './components/signin/signin.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'sigin',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'sigin',
+    path: 'signin',
     component: SigninComponent
   },
   {
-    path: 'dashboard',
-    canActivate: [AuthGuard],
+    path: 'home',
     component: DashboardComponent
   }
 ];

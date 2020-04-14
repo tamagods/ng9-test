@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-signin',
@@ -11,10 +12,20 @@ export class SigninComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
+    this.setTitle();
+    this.clearLocalStorage();
+  }
+
+  setTitle() {
+    this.titleService.setTitle('DOTA2 Picker - Signin');
+  }
+
+  clearLocalStorage() {
     localStorage.clear();
   }
 
