@@ -32,13 +32,17 @@ export class DashboardComponent implements OnInit {
   }
 
   onScroll() {
-    /* Navbar Scripts */
-    // jQuery to collapse the navbar on scroll
     $(window).on('scroll load', () => {
       if ($('.navbar').offset().top > 20) {
         $('.fixed-top').addClass('top-nav-collapse');
       } else {
         $('.fixed-top').removeClass('top-nav-collapse');
+      }
+    });
+
+    $('.navbar-nav li a').on('click', (event) => {
+      if (!$(this).parent().hasClass('dropdown')) {
+        $('.navbar-collapse').collapse('hide');
       }
     });
   }
